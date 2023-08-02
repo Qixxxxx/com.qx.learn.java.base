@@ -1,5 +1,7 @@
 package com.qx.learn.day01.FileAndIO;
 
+import org.junit.Test;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -34,7 +36,6 @@ import java.io.IOException;
  * File类的重命名功能：本质上是将文件剪切到指定位置后，重命名
  * public boolean renameTo(File dest): 重命名为指定文件路径
  * <p>
- * <p>
  * File类的创建功能：如果创建文件或文件目录时，没有写盘符路径，则默认创建在项目的路径之下
  * public boolean createNewFile(): 创建文件。若文件存在则不创建，返回false
  * public boolean mkdir(): 创建文件目录。若文件目录存在或此文件目录的上层目录不存在则不创建，返回false
@@ -45,27 +46,7 @@ import java.io.IOException;
  */
 public class FileTest {
 
-    public static void main(String[] args) {
-        FileTest fileTest = new FileTest();
-        fileTest.test1();
-        System.out.println();
-        fileTest.test2();
-        System.out.println();
-        fileTest.test3();
-        System.out.println();
-        fileTest.test4();
-        System.out.println();
-        try {
-            fileTest.test6();
-        }catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-    }
-
-    /**
-     * 构造器test
-     */
+    @Test
     public void test1() {
         // 使用路径构造
         File file1 = new File("E:\\Java\\Java Learn");
@@ -78,6 +59,7 @@ public class FileTest {
         System.out.println(file3); // out:E:\Java\Java Learn\FileAndIO\hi.txt
     }
 
+    @Test
     public void test2() {
         // 真实存在的文件目录
         File file1 = new File("E:\\Java");
@@ -100,6 +82,7 @@ public class FileTest {
         System.out.println(file3.isDirectory());    // out:false
     }
 
+    @Test
     public void test3() {
         File file = new File("hello.txt");
         File file1 = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\hello.txt");
@@ -124,6 +107,7 @@ public class FileTest {
 
     }
 
+    @Test
     public void test4() {
         File file = new File("E:\\Java");
         // list里面包含该目录下所有的文件目录名称
@@ -140,6 +124,7 @@ public class FileTest {
         }
     }
 
+    @Test
     public void test5() {
         File file1 = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\hello.txt");
         File file2 = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\hi.txt");
@@ -157,6 +142,8 @@ public class FileTest {
      * File类的删除功能：java中的删除不走回收站。若要删除一个文件目录，那么该文件目录内不能包含文件或文件目录
      * public boolean delete()：删除文件或文件目录
      */
+
+    @Test
     public void test6() throws IOException {
         File file1 = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\hii.txt");
         if (!file1.exists()) {
