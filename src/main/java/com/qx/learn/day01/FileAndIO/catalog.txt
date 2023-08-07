@@ -2,3 +2,5 @@
 2.BaseStreamTest
 3.BufferedTest
 4.TransformStreamTest
+5.RandomAccessFileTest
+6.ObjectStreamTest
