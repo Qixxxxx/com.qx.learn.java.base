@@ -11,10 +11,6 @@ import java.net.InetAddress;
  * UDP协议的网络编程：
  *  UDP数据报通过数据套接字DatagramSocket发送和接收，系统不保证安全准确送到，只保证发出
  *  DatagramPacket对象封装了UDP数据报
- *
- *
- * @author Qi
- * @create 2021-07-16 21:02
  */
 public class UDPTest {
     @Test

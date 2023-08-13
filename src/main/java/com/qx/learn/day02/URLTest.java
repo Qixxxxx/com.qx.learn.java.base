@@ -20,13 +20,6 @@ package com.qx.learn.day02;
  *          public String getPath()       获取文件路径
  *          public String getFile()       获取文件名
  *          public String getQuery()      获取查询名
- *
- *      针对HTTP协议的URLConnection类：
- *
- *
- *
- * @author Qi
- * @create 2021-07-19 10:24
  */
 public class URLTest {
 

@@ -11,17 +11,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- *
- *  实现TCP字节流编程：网络编程中都是使用Socket(套接字)进行编程，网络通信实际上就是Socket间的通信，要求通信的两端都要有Socket
- *
+ *  实现TCP字节流编程：
+ *  网络编程中都是使用Socket(套接字)进行编程，网络通信实际上就是Socket间的通信，要求通信的两端都要有Socket
  *  客户端发送：  你好，我是客户端
  *  服务器端接收，并打印信息表明收到了信息
  *
- *
- *
- *
- * @author Qi
- * @create 2021-07-16 15:12
  */
 public class TCPTest1{
 

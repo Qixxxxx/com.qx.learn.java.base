@@ -8,64 +8,56 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- *
- * 例题3：使用字符流完成例题2的操作
- *
- * @author Qi
- * @create 2021-07-16 16:36
+ * 客户发送一张图给服务端，服务端将文件保存在本地。
+ * 并且返回“发送成功”给客户端，然后关闭相应的连接
  */
 public class TCPTest3 {
-
+    /*
+    传一张图给服务器，并保存到本地
+     */
     @Test
-    public void client(){
-        Socket socket = null;               // 套接字
-        InputStream is = null;              // 输入流
-        OutputStream os = null;             // 输出流
-        CharArrayWriter caw = null;
-        BufferedWriter bw = null;
-        BufferedReader br = null;
+    public void client() {
+        Socket socket = null;
+        OutputStream os = null;
+        BufferedInputStream bis = null;
+        InputStream is = null;
+        ByteArrayOutputStream baos = null;
 
         try {
-            // 1.创建Socket对象，指明服务器的ip地址和端口号
-            socket = new Socket(InetAddress.getByName("127.0.0.1"), 8899);
-            // 2.使用输出流发送请求给服务器端
+            // 1.创建Socket对象
+            socket = new Socket(InetAddress.getByName("127.0.0.1"), 9090);
+            // 2.输出流
             os = socket.getOutputStream();
-            // 3.根据转换流将字节流转为字符流
-            bw = new BufferedWriter(new OutputStreamWriter(os));
-            bw.write("hello, server");
-            // 字节流在操作时本身不会用到缓冲区（内存），是文件本身直接操作的，而字符流在操作时使用了缓冲区
-            bw.flush();                    // 需要使用flush清空，才能结束，不然会一直等待
-            // 4.关闭数据的输出,表示上面的数据以及传输完成
-            socket.shutdownOutput();
-            // 5.使用输入流获取服务端的响应
-            is = socket.getInputStream();
-            br = new BufferedReader(new InputStreamReader(is));
-            caw = new CharArrayWriter();
-            char[] buffer = new char[1024];
+            // 3.缓冲流读取文件
+            File file = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\picture.jpg");
+            FileInputStream fis = new FileInputStream(file);
+            bis = new BufferedInputStream(fis);
+            // 4.写入文件
+            byte[] buffer = new byte[1024];
             int len;
-            while((len = br.read(buffer)) != -1){
-                caw.write(buffer, 0 ,len);
+            while((len = bis.read(buffer)) != -1){
+                os.write(buffer, 0, len);
             }
-            System.out.println(caw.toString());
-            System.out.println("收到了来自于" + socket.getInetAddress().getHostAddress() + "的响应");
+            // 5.关闭数据的输出,表示上面的数据以及传输完成
+            socket.shutdownOutput();
 
+            // 6.接收服务器的报文
+            is = socket.getInputStream();
+            baos = new ByteArrayOutputStream();
+            byte[] buffer1 = new byte[1024];
+            int len1;
+            while ((len1 = is.read(buffer1)) != -1){
+                baos.write(buffer1, 0, len1);
+            }
+            System.out.println(baos.toString());
+            System.out.println("收到了来自于" + socket.getInetAddress().getHostAddress() + "的确认");
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            if (caw != null){
-                    caw.close();
-                }
-            }
-            if(bw != null){
+        } finally {
+            // 7.关闭资源
+            if (baos != null){
                 try {
-                    bw.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(br != null){
-                try {
-                    br.close();
+                    baos.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -73,6 +65,13 @@ public class TCPTest3 {
             if(is != null){
                 try {
                     is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (bis != null){
+                try {
+                    bis.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -92,70 +91,57 @@ public class TCPTest3 {
                 }
             }
         }
+    }
 
     @Test
     public void server(){
         ServerSocket ss = null;
         Socket socket = null;
         InputStream is = null;
+        BufferedOutputStream bos = null;
         OutputStream os = null;
-        CharArrayWriter caw = null;
-        BufferedWriter bw = null;
-        BufferedReader br = null;
 
         try {
-            // 1.创建服务器端Socket
-            ss = new ServerSocket(8899);
+            // 1.创建服务器Socket
+            ss = new ServerSocket(9090);
             // 2.接收客户端的Socket
             socket = ss.accept();
-            // 3.创建输入流用以读取客户端的数据
+            // 3.创建输入流
             is = socket.getInputStream();
-            br = new BufferedReader(new InputStreamReader(is));
-            // 4.创建一个字符数组缓冲区，用于存放数据
-            caw = new CharArrayWriter();
-            char[] buffer = new char[1024];
+            // 4.缓冲流保存文件
+            File file = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\picture1.jpg");
+            FileOutputStream fos = new FileOutputStream(file);
+            bos = new BufferedOutputStream(fos);
+            byte[] buffer = new byte[1024];
             int len;
-            // 5.读取客户端传输的数据
-            while ((len = br.read(buffer)) != -1){
-                caw.write(buffer, 0, len);
+            while ((len = is.read(buffer)) != -1){
+                bos.write(buffer, 0, len);
             }
-            System.out.println(caw.toString());
-            System.out.println("收到了来自于" + socket.getInetAddress().getHostAddress() + "的数据");
-            // 6.服务器给予客户端响应
+            System.out.println("图片传输完成");
+            // 5.服务器给予客户端反馈
             os = socket.getOutputStream();
-            bw = new BufferedWriter(new OutputStreamWriter(os));
-            bw.write("hello,client");
-            bw.flush();
+            os.write("你好，客户端，照片我已经收到".getBytes());
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            if (caw != null){
-                caw.close();
-            }
-            if(bw != null){
-                try {
-                    bw.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(br != null){
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(is != null){
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+        } finally {
+            // 6. 关闭资源
             if(os != null){
                 try {
                     os.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (bos != null){
+                try {
+                    bos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (is != null){
+                try {
+                    is.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -177,3 +163,4 @@ public class TCPTest3 {
         }
     }
 }
+
