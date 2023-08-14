@@ -61,10 +61,6 @@ import java.util.Map;
  *
  */
 public class MapTest {
-    @Test
-    public void MapMethodTest() {
-        Map map = new HashMap<>();
 
-    }
 
 }

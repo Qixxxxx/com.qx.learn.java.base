@@ -8,7 +8,7 @@ package com.qx.learn.day04;
  *
  *  3.hashset底层为拉链散列表，本质上使用了HashMap
  *
- *  4.LinkedHashSet为HashSet的子类，多了双向指针，需要频繁的遍历时使用该类
+ *  4.LinkedHashSet为HashSet的子类，多了双向指针
  *
  *  5.TreeSet底层为红黑树,元素需要是同类对象，需要排序。对应的类需要实现自然排序或者定制排序
  *
