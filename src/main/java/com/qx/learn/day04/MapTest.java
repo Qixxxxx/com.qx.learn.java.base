@@ -1,9 +1,5 @@
 package com.qx.learn.day04;
 
-import org.junit.Test;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *      Map:双列数据，存储key-value对的数据
