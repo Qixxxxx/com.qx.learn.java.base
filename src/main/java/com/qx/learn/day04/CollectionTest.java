@@ -27,6 +27,11 @@ import java.util.Iterator;
  *      10. hashCode() 获取集合对象的哈希值
  *      11. iterator() 用于集合的遍历，返回迭代器对象
  *
+ *      对于集合的遍历有三种方式：普通for循环，迭代器，增强for循环（对于数组而言，增强for循环底层就是for循环，对于集合，底层为迭代器）。通常：
+ *          如果需要操作索引，使用普通for循环。
+ *          如果在遍历的过程中需要删除元素，请使用迭代器。
+ *          如果仅仅想遍历，那么使用增强for。
+ *
  */
 public class CollectionTest {
 
