@@ -4,8 +4,7 @@ import java.util.Set;
 
 public class SetUtility {
 
-    public SetUtility() {
-    }
+    private SetUtility() {}
 
     public static boolean any(Set<?> set) {
         return set != null && set.size() > 0;
