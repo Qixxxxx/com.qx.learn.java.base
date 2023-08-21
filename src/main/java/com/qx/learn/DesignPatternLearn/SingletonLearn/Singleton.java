@@ -11,13 +11,16 @@ package com.qx.learn.DesignPatternLearn.SingletonLearn;
  * <p>
  * 单例推荐写法：双重检查、饿汉式、静态内部类
  */
+public class Singleton {
+
+}
 
 /**
  * 饿汉式,故名思议，很饿，所以在类加载的时候就直接创建类的实例
  * 优点：线程安全
  * 缺点：内存浪费，类加载之后就被创建了实例
  */
-public class Singleton_1 {
+class Singleton_1 {
 
     private static final Singleton_1 INSTANCE = new Singleton_1();
 
@@ -99,7 +102,6 @@ class Singleton_4 {
  * Double-Check概念对于多线程开发者来说不会陌生，
  * 如代码中所示，我们进行了两次if (singleton == null)检查，这样就可以保证线程安全了
  * 这样，实例化代码只用执行一次，后面再次访问时，判断if (singleton == null)，直接return实例化对象
- *
  */
 class Singleton_5 {
 
