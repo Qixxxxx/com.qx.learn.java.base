@@ -1,4 +1,4 @@
-package com.qx.learn.CommonTools;
+package com.qx.learn.CommonTools.MyTools;
 
 import javax.xml.bind.DatatypeConverter;
 import java.util.List;

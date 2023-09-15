@@ -1,4 +1,4 @@
-package com.qx.learn.CommonTools;
+package com.qx.learn.CommonTools.MyTools;
 
 /**
  * 加不加@FunctionalInterface注解对于接口是不是函数式接口没有影响

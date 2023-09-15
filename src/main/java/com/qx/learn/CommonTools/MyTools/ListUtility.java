@@ -1,4 +1,4 @@
-package com.qx.learn.CommonTools;
+package com.qx.learn.CommonTools.MyTools;
 
 import java.util.*;
 import java.util.stream.Collectors;
