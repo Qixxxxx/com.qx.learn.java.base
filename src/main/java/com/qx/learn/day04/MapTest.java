@@ -1,12 +1,17 @@
 package com.qx.learn.day04;
 
 
+import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *      Map:双列数据，存储key-value对的数据
  *          HashMap：作为Map的主要实现类；线程不安全的，效率高；能存储null值
- *              LinkedHashMap: 在HashMap底层结构添加双向指针，对于频繁的遍历操作，该类的执行效率比HashMap更高
+ *              LinkedHashMap: HashMap的子类，在HashMap底层结构添加双向指针，对于频繁的遍历操作，该类的执行效率比HashMap更高
  *          Hashtable：古老的Map实现类；线程安全的，效率低；不能存储null值
- *              Properties：常用来处理配置文件；key和value都是String类型
+ *              Properties：Hashtable的子类，常用来处理配置文件；key和value都是String类型
  *          TreeMap：可进行排序，实现排序遍历(按key来自然排序或者定制排序)；底层为红黑树
  *
  *      HashMap底层结构： 数组+链表   （jdk7以及之前）
@@ -28,7 +33,7 @@ package com.qx.learn.day04;
  *              首次调用put()方法时，底层创建长度为16的数组
  *              当数组的某一个索引位置上元素以链表形式存在的数据个数>8 且 当前数组的长度 > 64时，此索引位置上的链表存储改为红黑树存储
  *
- *  Map有个内部类：Entry<K,V>是map的键值对元素
+ *  Map有个内部接口：Entry<K,V>是map的键值对元素
  *  Entry常用方法：
  *      K getKey();    获取key
  *      V getValue();  获取value
@@ -58,5 +63,10 @@ package com.qx.learn.day04;
  */
 public class MapTest {
 
+    @Test
+    public void test() {
+        Map<String, Integer> map = new HashMap<>();
+
+    }
 
 }

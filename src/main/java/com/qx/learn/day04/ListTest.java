@@ -34,7 +34,7 @@ import java.util.stream.IntStream;
  * 对于数组，随机元素访问的时间复杂度是 O(1)，元素插入操作是 O(n)
  * 对于链表，随机元素访问的时间复杂度是 O(n)，元素插入操作是 O(1)
  *
- * 对于ArrayList和LinkedList性能，我们进行下列比较，发现 ArrayList无论是随机访问，还是随机插入，所需的时间都遥遥领先于LinkedList
+ * 对于ArrayList和LinkedList性能，我们进行下列比较，发现 ArrayList无论是随机访问，还是随机插入，所需的时间都很短，遥遥领先于LinkedList
  * 对于LinkedList，插入需要知道插入的位置节点，先通过循环获取到节点的再执行插入操作。前者也是有开销的，不可能只考虑插入操作本身的代价
  * 所以，对于插入操作，LinkedList 的时间复杂度其实也是O(n)。在各种常用场景下，LinkedList 几乎都不能在性能上胜出 ArrayList
  *
