@@ -11,16 +11,16 @@ import java.util.stream.IntStream;
 
 /**
  * List接口继承Collection接口，List是有序的，有一些根据索引的操作方法：
- * void add(Object element): 在list末端添加元素
- * void add(int index, Object ele):在 index位置插入ele元素
- * boolean addAll(Collection eles):list末端将eles中的所有元素添加进来
- * boolean addAll( int index, Collection eles):从 index位置开始将eles中的所有元素添加进来
+ * void add(Object o): 在list末端添加素o
+ * void add(int index, Object o):在 index位置插入ele元素
+ * boolean addAll(Collection else):list末端将else中的所有元素添加进来
+ * boolean addAll( int index, Collection else):从 index位置开始将else中的所有元素添加进来
  * Object get(int index):获取指定 index位置的元素
- * int indexOf( Object obj):返回oj在集合中首次出现的位置
- * int lastIndexOf( Object obj):返回obj在当前集合中末次出现的位置
+ * int indexOf(Object o):返回o在集合中首次出现的位置
+ * int lastIndexOf(Object o):返回obj在当前集合中末次出现的位置
  * object remove( int index):移除指定 index位置的元素，并返回此元素
- * Object set(int index, Object ele):设置指定 Indexs位置的元素为ele
- * List sublist( int fromindex, int tolndex):返回从 fromindex到 toindex位置的子集合 (集合的切片)
+ * Object set(int index, Object o):设置指定 Index位置的元素为o
+ * List sublist( int fromIndex, int toIndex):返回从 fromIndex 到 toIndex位置的子集合 (集合的切片)
  *
  * LinkedList新增方法：LinkedList是带有头尾节点的双向链表
  * void addFirst(Object obj)   添加首节点

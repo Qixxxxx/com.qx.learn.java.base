@@ -4,10 +4,31 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * 用于List的工具类，提供校验和一些常用方法
+ */
 public final class ListUtility {
 
     private ListUtility(){}
 
+    /**
+     * 校验list是否有值
+     */
+    public static <T> boolean any(List<T> list){
+        return list != null && list.size() > 0;
+    }
+
+    /**
+     * 校验list是否为空
+     */
+    public static <T> boolean isNullOrEmpty(List<T> list){
+        return !any(list);
+    }
+
+    /**
+     * 按序合并多个list，返回合并后的结果
+     * @param args : 任意个list
+     */
     public static <T> List<T> join(List<? extends T> ...args) {
         if (args == null || args.length == 0) {
             return null;
@@ -18,8 +39,11 @@ public final class ListUtility {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * 间隔划分list
+     */
     public static <T> List<List<T>> partition(List<T> list, int size) {
-        if (ListUtility.isNullOrEmpty(list)) {
+        if (isNullOrEmpty(list)) {
             throw new IllegalArgumentException("list");
         }
         if (size <= 0) {
@@ -27,60 +51,54 @@ public final class ListUtility {
         }
         List<List<T>> result = new ArrayList<>();
         for (int i = 0; i < list.size(); i += size) {
-            result.add(ListUtility.take(list, i, size));
+            result.add(take(list, i, size));
         }
         return result;
     }
 
-    public static <T> boolean any(List<T> list){
-        return list != null && list.size() > 0;
+    /**
+     * 跳跃按序取数
+     */
+    public static <T> List<T> take(List<T> source, int skipCount, int takeCount) {
+        if (isNullOrEmpty(source)) {
+            throw new IllegalArgumentException("source");
+        }
+
+        List<T> result = skip(source, skipCount);
+        result = take(result, takeCount);
+
+        return result;
     }
 
-    public static <T> boolean isNullOrEmpty(List<T> list){
-        return !any(list);
-    }
-
-
-    public static <T> T first(List<T> list){
-        if (!any(list)) {
+    /**
+     * 按序取数，如果count超过list的长度，就取整个list
+     */
+    public static <T> List<T> take(List<T> list, int count) {
+        if (isNullOrEmpty(list)) {
             throw new IllegalArgumentException("list");
         }
+        if (count < 0) {
+            throw new IllegalArgumentException("count");
+        }
 
-        return list.get(0);
+        List<T> result = new ArrayList<T>();
+        if (count == 0) {
+            return result;
+        }
+        for (T item : list) {
+            result.add(item);
+            if (result.size() == count) {
+                break;
+            }
+        }
+        return result;
     }
 
-    public static <T> T firstOrDefault(List<T> list){
-        if (list == null) {
-            throw new IllegalArgumentException("list");
-        }
-        if(list.size() == 0){
-            return null;
-        }
-
-        return list.get(0);
-    }
-
-    public static <T> T last(List<T> list){
-        if (!any(list)) {
-            throw new IllegalArgumentException("list");
-        }
-
-        return list.get(list.size() - 1);
-    }
-
-    public static <T> T lastOrDefault(List<T> list){
-        if (list == null) {
-            throw new IllegalArgumentException("list");
-        }
-        if(list.size() == 0){
-            return null;
-        }
-
-        return list.get(list.size() - 1);
-    }
-
+    /**
+     * 获取一个跳过count个值的list
+     */
     public static <T> List<T> skip(List<T> list, int count) {
-        if (list == null) {
+        if (isNullOrEmpty(list)) {
             throw new IllegalArgumentException("list");
         }
         if (count < 0) {
@@ -96,185 +114,49 @@ public final class ListUtility {
         return result;
     }
 
-    public static <T> List<T> take(List<T> list, int count) {
+    /**
+     * 获取非空数组第一个值
+     */
+    public static <T> T first(List<T> list){
+        if (isNullOrEmpty(list)) {
+            throw new IllegalArgumentException("list");
+        }
+        return list.get(0);
+    }
+
+    /**
+     * 获取数组第一个值,允许数组为空数组
+     */
+    public static <T> T firstOrNull(List<T> list){
         if (list == null) {
             throw new IllegalArgumentException("list");
         }
-        if (count < 0) {
-            throw new IllegalArgumentException("count");
-        }
-
-        List<T> result = new ArrayList<T>();
-
-        if (count == 0) {
-            return result;
-        }
-
-        for (T item : list) {
-            result.add(item);
-
-            if (result.size() == count) {
-                break;
-            }
-        }
-
-        return result;
+        return list.get(0);
     }
 
-    public static <T> List<T> take(List<T> source, int skipCount, int takeCount) {
-        if (source == null || source.isEmpty()) {
-            throw new IllegalArgumentException("source");
+    /**
+     * 获取非空数组最后一个值
+     */
+    public static <T> T last(List<T> list){
+        if (isNullOrEmpty(list)) {
+            throw new IllegalArgumentException("list");
         }
 
-        List<T> result = ListUtility.skip(source, skipCount);
-        result = ListUtility.take(result, takeCount);
-
-        return result;
+        return list.get(list.size() - 1);
     }
 
-    public static <T> ArrayList<T> where(List<T> source, Func1<T, Boolean> predicate) {
-        if (source == null) {
-            throw new IllegalArgumentException("source");
+    /**
+     * 获取数组最后一个值
+     */
+    public static <T> T lastOrDefault(List<T> list){
+        if (list == null) {
+            throw new IllegalArgumentException("list");
         }
-        if (predicate == null) {
-            throw new IllegalArgumentException("predicate");
-        }
-
-        ArrayList<T> result = new ArrayList<>();
-
-        for (T item : source) {
-            if (predicate.execute(item)) {
-                result.add(item);
-            }
+        if(list.size() == 0){
+            return null;
         }
 
-        return result;
-    }
-
-    public static <T, TResult> ArrayList<TResult> select(List<T> source, Func1<T, TResult> selector) {
-        if (source == null) {
-            throw new IllegalArgumentException("source");
-        }
-        if (selector == null) {
-            throw new IllegalArgumentException("selector");
-        }
-
-        ArrayList<TResult> result = new ArrayList<>();
-
-        for (T item : source) {
-            result.add(selector.execute(item));
-        }
-
-        return result;
-    }
-
-    public static <T, TResult> ArrayList<TResult> selectWhere(List<T> source, Func1<T, Boolean> predicate, Func1<T, TResult> selector) {
-        if (source == null) {
-            throw new IllegalArgumentException("source");
-        }
-        if (predicate == null) {
-            throw new IllegalArgumentException("predicate");
-        }
-        if (selector == null) {
-            throw new IllegalArgumentException("selector");
-        }
-
-        return select(where(source, predicate), selector);
-    }
-
-    public static <T> T firstOrDefault(List<T> source, Func1<T, Boolean> predicate) {
-        if (source == null) {
-            throw new IllegalArgumentException("source");
-        }
-        if (predicate == null) {
-            return source.isEmpty() ? null : source.get(0);
-        }
-
-        for (T item : source) {
-            if (predicate.execute(item)) {
-                return item;
-            }
-        }
-
-        return null;
-    }
-
-    public static <T> T firstOrDefault(List<T> source, Func1<T, Boolean> predicate, T defaultValue) {
-        if (source == null || source.isEmpty() || predicate == null) {
-            return defaultValue;
-        }
-        for (T item : source) {
-            if (predicate.execute(item)) {
-                return item;
-            }
-        }
-        return defaultValue;
-    }
-
-    public static <T> T lastOrDefault(List<T> source, Func1<T, Boolean> predicate) {
-        if (source == null) {
-            throw new IllegalArgumentException("source");
-        }
-
-        if (predicate == null) {
-            return source.isEmpty() ? null : source.get(source.size() - 1);
-        }
-
-        for (int i = source.size() - 1; i >= 0; i--) {
-            if (predicate.execute(source.get(i))) {
-                return source.get(i);
-            }
-        }
-
-        return null;
-    }
-
-
-    public static <T> T lastOrDefault(List<T> source, Func1<T, Boolean> predicate, T defaultValue) {
-        if (source == null || source.isEmpty() || predicate == null) {
-            return defaultValue;
-        }
-        for (int i = source.size() - 1; i >= 0; i--) {
-            if (predicate.execute(source.get(i))) {
-                return source.get(i);
-            }
-        }
-        return defaultValue;
-    }
-
-    public static <T> boolean any(List<T> source, Func1<T, Boolean> predicate) {
-        if (source == null) {
-            throw new IllegalArgumentException("source");
-        }
-        if (predicate == null) {
-            throw new IllegalArgumentException("predicate");
-        }
-
-        for (T item : source) {
-            if (predicate.execute(item)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public static <T> boolean all(List<T> source, final Func1<T, Boolean> predicate) {
-        if (source == null) {
-            throw new IllegalArgumentException("source");
-        }
-        if (predicate == null) {
-            throw new IllegalArgumentException("predicate");
-        }
-
-        return !any(
-                source,
-                new Func1<T, Boolean>() {
-                    @Override
-                    public Boolean execute(T item) {
-                        return !predicate.execute(item);
-                    }
-                });
+        return list.get(list.size() - 1);
     }
 
     public static <T> boolean isEquals(List<T> left, List<T> right) {
