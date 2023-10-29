@@ -3,6 +3,7 @@ package com.qx.learn.day04;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -42,6 +43,17 @@ import java.util.stream.IntStream;
  * LinkedList只有在头部插入元素的时候，性能会明显优于ArrayList
  */
 public class ListTest {
+
+    // ArrayList创建的三种方式
+    // 第一种方式：使用Arrays.asList
+    // ArrayList<Object> obj = new ArrayList<Object>(Arrays.asList(Object o1, Object o2, Object o3, ....so on));
+    // 第二种方式：使用匿名内部类，这里有两层大括号，外层括号建立了一个ArrayList的匿名子类，内层括号定义了一个该匿名子类的构造块（构造对象时会自动执行的代码块）
+    // ArrayList<T> obj = new ArrayList<T>() {{add(Object o1);add(Object o2);}};
+    // 第三种方式：正常add
+    // ArrayList<Object> objList = new ArrayList<Object>();
+    // obj.add("o1");
+    // obj.add("o2");
+
 
     /**
      *  随机对一个1000000长度的list进行1000次随机位置get操作

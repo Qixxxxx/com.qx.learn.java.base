@@ -1,6 +1,7 @@
 package com.qx.learn.CommonTools.MyTools;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -159,15 +160,15 @@ public final class ListUtility {
         return list.get(list.size() - 1);
     }
 
+    /**
+     * 比较两个list是否相等
+     */
     public static <T> boolean isEquals(List<T> left, List<T> right) {
         if (left == null && right == null) {
             return true;
         }
         if (left == null || right == null) {
             return false;
-        }
-        if (left.equals(right)) {
-            return true;
         }
         if (left.size() != right.size()) {
             return false;
@@ -184,94 +185,10 @@ public final class ListUtility {
         return true;
     }
 
-    public static <TKey extends Comparable<? super TKey>, TSource> List<TSource> orderBy(Collection<TSource> source, final Func1<TSource, TKey> keySelector) {
-        if (source == null || source.size() == 0) {
-            throw new IllegalArgumentException("source");
-        }
-
-        List<TSource> result = new ArrayList<>(source);
-        Collections.sort(result, new Comparator<TSource>() {
-            @Override
-            public int compare(TSource o1, TSource o2) {
-                TKey key1 = keySelector.execute(o1);
-                TKey key2 = keySelector.execute(o2);
-
-                if (key1 == key2) {
-                    return 0;
-                }
-                if (key1 == null) {
-                    return -1;
-                }
-                if (key2 == null) {
-                    return 1;
-                }
-                return key1.compareTo(key2);
-            }
-        });
-
-        return result;
-    }
-
-    public static <TKey extends Comparable<? super TKey>, TSource> List<TSource> orderByDescending(Collection<TSource> source, final Func1<TSource, TKey> keySelector) {
-        if (source == null || source.size() == 0) {
-            throw new IllegalArgumentException("source");
-        }
-
-        List<TSource> result = new ArrayList<>(source);
-        Collections.sort(result, new Comparator<TSource>() {
-            @Override
-            public int compare(TSource o1, TSource o2) {
-                TKey key1 = keySelector.execute(o1);
-                TKey key2 = keySelector.execute(o2);
-
-                if (key1 == key2) {
-                    return 0;
-                }
-                if (key1 == null) {
-                    return 1;
-                }
-                if (key2 == null) {
-                    return -1;
-                }
-                return -key1.compareTo(key2);
-            }
-        });
-
-        return result;
-    }
-
-    public static <T> List<T> except(List<T> source, List<T> excepts) {
-        if (source == null) {
-            throw new IllegalArgumentException("source");
-        }
-        if (excepts == null) {
-            throw new IllegalArgumentException("excepts");
-        }
-
-        List<T> result = new ArrayList<>(source);
-        result.removeAll(excepts);
-        return result;
-    }
-
-    public static <T> int count(Collection<T> source, Func1<T, Boolean> predicate) {
-        if (source == null) {
-            throw new IllegalArgumentException("source");
-        }
-        if (predicate == null) {
-            throw new IllegalArgumentException("predicate");
-        }
-
-        int count = 0;
-        for (T item : source) {
-            if (predicate.execute(item)) {
-                count++;
-            }
-        }
-
-        return count;
-    }
-
-    public static <T> int findIndex(List<T> source, Func1<T, Boolean> predicate) {
+    /**
+     * 获得满足条件的第一个元素的索引值
+     */
+    public static <T> int findIndex(List<T> source, Predicate<T> predicate) {
         if (source == null) {
             throw new IllegalArgumentException("source");
         }
@@ -281,7 +198,7 @@ public final class ListUtility {
         }
 
         for (int i = 0; i < source.size(); i++) {
-            if (predicate.execute(source.get(i))) {
+            if (predicate.test(source.get(i))) {
                 return i;
             }
         }
@@ -289,22 +206,14 @@ public final class ListUtility {
         return -1;
     }
 
-    public static <T> List<T> distinct(Collection<T> source) {
-        if (source == null || source.isEmpty()) {
+    /**
+     * 排除重复元素
+     */
+    public static <T> List<T> distinct(List<T> source) {
+        if (isNullOrEmpty(source)) {
             throw new IllegalArgumentException("source");
         }
-
-        LinkedHashSet<T> hashSet = new LinkedHashSet<>(source);
-        return new ArrayList<>(hashSet);
+        return new ArrayList<>(new HashSet<>(source));
     }
 
-    public static <T> List<T> populateList(int size, T value) {
-        ArgumentValidatorUtility.isTrue(size > 0, "size");
-
-        List<T> result = new ArrayList<>(size);
-        for (int i = 0; i < size; i++) {
-            result.add(value);
-        }
-        return result;
-    }
 }
