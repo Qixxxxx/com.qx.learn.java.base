@@ -1,7 +1,6 @@
 package com.qx.learn.ComparatorLearn;
 
 
-import com.qx.learn.day01.FileAndIO.Person;
 import org.junit.Test;
 
 import java.util.*;
