@@ -13,7 +13,7 @@ import java.util.Iterator;
  * 实际使用时，与泛型连用
  * 常用方法：
  *      1.add(Object obj) 添加
- *        addAll(Collection c)将集合c中的元素添加进来(并集)
+ *        addAll(Collection c)将集合c中的元素添加进来
  *      2.size() 获取有效元素的个数
  *      3.clear() 清空集合
  *      4.isEmpty() 查看是否为空

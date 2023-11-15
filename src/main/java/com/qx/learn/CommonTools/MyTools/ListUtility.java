@@ -216,4 +216,16 @@ public final class ListUtility {
         return new ArrayList<>(new HashSet<>(source));
     }
 
+    /**
+     * 判断与两集合是否存在交集
+     */
+    public static <T> boolean whetherIntersect(List<T> list, List<T> otherList) {
+        if (isNullOrEmpty(list) || isNullOrEmpty(otherList)) {
+            throw new IllegalArgumentException("input");
+        }
+        int orgSize = list.size();
+        list.retainAll(otherList);
+        return list.size() == orgSize;
+    }
+
 }
