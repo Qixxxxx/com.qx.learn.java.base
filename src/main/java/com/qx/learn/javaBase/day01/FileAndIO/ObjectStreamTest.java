@@ -25,7 +25,7 @@ public class ObjectStreamTest {
     public void test() {
         ObjectOutputStream oos = null;
         try {
-            FileOutputStream fos = new FileOutputStream("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\object.dat");
+            FileOutputStream fos = new FileOutputStream("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/object.dat");
             oos = new ObjectOutputStream(fos);
             oos.writeObject(new String("我爱北京天安门"));       // 使用writeObject()方法
             oos.flush(); // 刷新操作
@@ -50,7 +50,7 @@ public class ObjectStreamTest {
     public void test2() {
         ObjectInputStream ois = null;
         try {
-            FileInputStream fis = new FileInputStream("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\object.dat");
+            FileInputStream fis = new FileInputStream("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/object.dat");
             ois = new ObjectInputStream(fis);
 
             Object obj = ois.readObject();

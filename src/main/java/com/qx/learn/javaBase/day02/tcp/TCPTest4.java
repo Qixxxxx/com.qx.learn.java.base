@@ -33,7 +33,7 @@ public class TCPTest4 {
             // 4. 使用输入流获取服务端传过来的资源
             is = socket.getInputStream();
             // 5. 保存到本地
-            File file = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\picture2.jpg");
+            File file = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/picture2.jpg");
             FileOutputStream fos = new FileOutputStream(file);
             bos = new BufferedOutputStream(fos);
             byte[] buffer1 = new byte[1024];
@@ -109,9 +109,9 @@ public class TCPTest4 {
             System.out.println(baos.toString());
             // 4. 搜索资源（实际有操作进行搜索）
             System.out.println("正在搜索照片");
-            System.out.println("搜索完成，照片位于 E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\picture.jpg");
+            System.out.println("搜索完成，照片位于 E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/picture.jpg");
             // 5. 读取文件资源
-            File file = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\picture.jpg");
+            File file = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/picture.jpg");
             FileInputStream fis = new FileInputStream(file);
             bis = new BufferedInputStream(fis);
             // 6. 输出

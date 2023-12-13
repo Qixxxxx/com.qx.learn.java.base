@@ -30,7 +30,7 @@ public class BaseStreamTest {
         FileReader fr = null;
         try {
             // 1.实例化File类的对象，指明要操作的文件
-            File file = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\hello.txt");
+            File file = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/hello.txt");
             // 2.提供具体的流
             fr = new FileReader(file);
             // 3.数据的读入(不推荐这种写法)
@@ -59,7 +59,7 @@ public class BaseStreamTest {
         FileReader fr = null;       // 抛异常
         try {
             // 1.实例化File类的对象，指明要操作的文件
-            File file = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\hello.txt");   // 相较于当前的Module
+            File file = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/hello.txt");   // 相较于当前的Module
             // 2.提供具体的流
             fr = new FileReader(file);
             // 3.数据的读取
@@ -103,7 +103,7 @@ public class BaseStreamTest {
         FileWriter fw = null;
         try {
             // 1.提供File类的对象，指明写入到的文件
-            File file = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\hi.txt");
+            File file = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/hi.txt");
 
             // 2.提供FileWriter的对象，用于数据的写入
             fw = new FileWriter(file, false);       // true表示追加在已有字符后面, false表示不追加
@@ -135,8 +135,8 @@ public class BaseStreamTest {
         FileWriter fw = null;
         try {
             // 1.创建File类的对象，指明读和写的文件
-            File srcFile = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\hello.txt");
-            File destFile = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\hii.txt");
+            File srcFile = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/hello.txt");
+            File destFile = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/hii.txt");
 
             // 2.创建输入流和输出流的对象
             fr = new FileReader(srcFile);
@@ -175,7 +175,7 @@ public class BaseStreamTest {
     public void test5() {
         FileInputStream fis = null;
         try {
-            File file = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\hello.txt");
+            File file = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/hello.txt");
             fis = new FileInputStream(file);
             byte[] buffer = new byte[5];           // InputStream是以字节来读取数据的
             int len;
@@ -204,8 +204,8 @@ public class BaseStreamTest {
         FileInputStream fis = null;
         FileOutputStream fos = null;
         try {
-            File srcFile = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\picture.jpg");
-            File destFile = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\copyPicture.jpg");
+            File srcFile = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/picture.jpg");
+            File destFile = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/copyPicture.jpg");
 
             fis = new FileInputStream(srcFile);
             fos = new FileOutputStream(destFile);
@@ -242,8 +242,8 @@ public class BaseStreamTest {
 
         long start = System.currentTimeMillis();
 
-        String srcPath = "D:\\BaiduNetdiskDownload\\剑雨.mp4";    // 复制一个mp4文件
-        String destPath = "C:\\Users\\11435\\Desktop\\剑雨.mp4";
+        String srcPath = "D:/BaiduNetdiskDownload/剑雨.mp4";    // 复制一个mp4文件
+        String destPath = "C:/Users/11435/Desktop/剑雨.mp4";
         copyFile(srcPath, destPath);
 
         long end = System.currentTimeMillis();

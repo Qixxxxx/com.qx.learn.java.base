@@ -40,12 +40,12 @@ import java.util.regex.Pattern;
  *      [^] 不接受的字符列表     ex. [^abc] 除a、b、c之外任意字符，包括数字和特殊符号
  *      - 连字符                ex. A-Z任意单个大写字母
  *      . 匹配除\n以外的任何字符      ex. a..b 以a开头b结尾，中间包括2个任意字符的长度为4的字符串     例如aaab, a35b, a$%b等
- *      \\d 匹配单个数字字符，相当于[0-9]  ex.\\d{3}(\\d)?  3个或者4个数字的字符串        例如123，5345等
- *      \\D 匹配单个非数字字符，相当于[^0-9]    ex. \\D(\\d)*  以单个非数字字符开头，后接任意个数字的字符串   例如a, A324, a2等
- *      \\w 匹配单个数字、大小写字母字符，相当于[0-9a-zA-Z]   ex. \\d{3}\\w{4}  3个数字开头，接4个数字或大小写字母的字符串 1234567,123abcd等
- *      \\W 匹配单个非数字、大小写字母字符，相当于[^0-9a-zA-Z] ex. \\W+\\d{2} 至少1个非数字字母字符开头，2个数字字符的字符串 #29，#@￥%&12等
- *      \\s 匹配任何空白字符(空格，制表符\t)
- *      \\S 匹配任何非空白字符
+ *      /d 匹配单个数字字符，相当于[0-9]  ex./d{3}(/d)?  3个或者4个数字的字符串        例如123，5345等
+ *      /D 匹配单个非数字字符，相当于[^0-9]    ex. /D(/d)*  以单个非数字字符开头，后接任意个数字的字符串   例如a, A324, a2等
+ *      /w 匹配单个数字、大小写字母字符，相当于[0-9a-zA-Z]   ex. /d{3}/w{4}  3个数字开头，接4个数字或大小写字母的字符串 1234567,123abcd等
+ *      /W 匹配单个非数字、大小写字母字符，相当于[^0-9a-zA-Z] ex. /W+/d{2} 至少1个非数字字母字符开头，2个数字字符的字符串 #29，#@￥%&12等
+ *      /s 匹配任何空白字符(空格，制表符\t)
+ *      /S 匹配任何非空白字符
  *      Java中正则表达式默认区分字母大小写，实现不区分大小写：(?i)或在模式pattern中选择
  *          (?i)abc         abc都不区分大小写
  *          a(?i)bc         bc不区分大小写
@@ -54,10 +54,10 @@ import java.util.regex.Pattern;
 
  *  6.定位符
  *      ^ 指定起始字符    ex. ^[0-9]+[a-z]*  起始位置至少1个数字，后接任意个小写字母的字符串   例如123，6aadfafd, 31231245141等
- *      $ 指定结束字符    ex. ^[0-9]\\-[a-z]+$ 以1个数字开头，接-，至少1个小写字母结尾的字符串   例如3-a，4-dfdasfad等
- *      \\b 匹配目标字符串的边界    ex. han\\b  空格前或者字符串末尾有han   \\bhan 开头有han
- *      \\B 匹配目标字符串的非边界  ex. han\\B  与\\b相反
- *  7.转义符：\\  需要用到转义符的字符有：  . + * () [] {} ^ \ / $ ? -
+ *      $ 指定结束字符    ex. ^[0-9]/-[a-z]+$ 以1个数字开头，接-，至少1个小写字母结尾的字符串   例如3-a，4-dfdasfad等
+ *      /b 匹配目标字符串的边界    ex. han/b  空格前或者字符串末尾有han   /bhan 开头有han
+ *      /B 匹配目标字符串的非边界  ex. han/B  与/b相反
+ *  7.转义符：/  需要用到转义符的字符有：  . + * () [] {} ^ \ / $ ? -
  *
  *  ^ 匹配输入字符串开始的位置
  *  $ 匹配输入字符串结尾的位置
@@ -73,7 +73,7 @@ public class RegExp {
                 "里程碑，标志着3ava的应用开始普及9889";
 
         // 目标：匹配所有四个数字
-        String regStr = "\\d\\d\\d\\d";
+        String regStr = "/d/d/d/d";
         Pattern pattern = Pattern.compile(regStr);
         Matcher matcher = pattern.matcher(content);
         while (matcher.find()) {
@@ -87,7 +87,7 @@ public class RegExp {
         String content = "abc$(abc(123(";
 
         // 目标：匹配$或(
-        String regStr = "\\$|\\(";    // 如果直接 $ ( 将会报错
+        String regStr = "/$|/(";    // 如果直接 $ ( 将会报错
         Pattern pattern = Pattern.compile(regStr);
         Matcher matcher = pattern.matcher(content);
         while (matcher.find()) {
@@ -125,9 +125,9 @@ public class RegExp {
     // 边界定位
     public void test4() {
         String content = "hanshuanpingsphan nnhan";
-        // String regStr = "han\\b";          // 找到末尾一个han和空格前一个han
-        //String regStr = "\\bhan";             // 找到开头一个han
-        String regStr = "han\\B";
+        // String regStr = "han/b";          // 找到末尾一个han和空格前一个han
+        //String regStr = "/bhan";             // 找到开头一个han
+        String regStr = "han/B";
         Pattern pattern = Pattern.compile(regStr);
         Matcher matcher = pattern.matcher(content);
         while (matcher.find()) {
@@ -143,7 +143,7 @@ public class RegExp {
     // ...以此类推
     public void test5() {
         String content = "hanshuanping s7789 nn1189han";
-        String regStr = "(\\d\\d)(\\d\\d)";   // 分两组
+        String regStr = "(/d/d)(/d/d)";   // 分两组
         Pattern pattern = Pattern.compile(regStr);
         Matcher matcher = pattern.matcher(content);
         while (matcher.find()) {
@@ -161,7 +161,7 @@ public class RegExp {
     // ...以此类推
     public void test6() {
         String content = "hanshuanping s7789 nn1189han";
-        String regStr = "(?<g1>\\d\\d)(?<s1>\\d\\d)";   // 分两组
+        String regStr = "(?<g1>/d/d)(?<s1>/d/d)";   // 分两组
         Pattern pattern = Pattern.compile(regStr);
         Matcher matcher = pattern.matcher(content);
         while (matcher.find()) {

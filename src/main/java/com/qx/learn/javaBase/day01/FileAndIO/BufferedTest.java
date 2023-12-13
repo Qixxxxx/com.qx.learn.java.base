@@ -20,8 +20,8 @@ public class BufferedTest {
         BufferedOutputStream bos = null;
         try {
             // 1.造文件
-            File srcFile = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\picture.jpg");
-            File destFile = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\copyPicture.jpg");
+            File srcFile = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/picture.jpg");
+            File destFile = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/copyPicture.jpg");
 
             // 2.造流
             // 节点流
@@ -68,8 +68,8 @@ public class BufferedTest {
         BufferedWriter bw = null;
         try {
             // 1.造文件
-            File srcFile = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\dbcp.txt");
-            File destFile = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\dbcp1.txt");
+            File srcFile = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/dbcp.txt");
+            File destFile = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/dbcp1.txt");
 
             // 2.造流
             // 节点流

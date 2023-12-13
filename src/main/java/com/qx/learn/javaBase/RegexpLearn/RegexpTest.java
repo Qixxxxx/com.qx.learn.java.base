@@ -37,8 +37,8 @@ public class RegexpTest {
 
         // 提取文章中所有的数字：修改模式   Pattern pattern = Pattern.compile("[0-9]+");
         // 提取文章中所有的数字和英文单词： Pattern pattern = Pattern.compile("([0-9]+)|([a-zA-Z]+)");
-        // 提取百度热搜标题，修改模式: Pattern pattern = Pattern.compile("文本中一致的内容不变，想要的内容(\\S*)");
-                                // ex: Pattern pattern= Pattern.compile("<a target="blank\"title=\"(\\S*)\"")
+        // 提取百度热搜标题，修改模式: Pattern pattern = Pattern.compile("文本中一致的内容不变，想要的内容(/S*)");
+                                // ex: Pattern pattern= Pattern.compile("<a target="blank\"title=\"(/S*)\"")
         // 后匹配到的文本放到matcher.group(1)中  System.out.println("找到 " + matcher.group(1));
 
 

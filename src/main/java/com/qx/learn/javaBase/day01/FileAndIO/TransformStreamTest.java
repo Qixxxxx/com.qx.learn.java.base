@@ -26,7 +26,7 @@ public class TransformStreamTest {
     public void test1() {
         InputStreamReader isr = null; // 指明字符集，取决于文件保存时使用的字符集
         try {
-            FileInputStream fis = new FileInputStream("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\dbcp.txt"); // 流的构造器可以直接写路径，会自动new一个File对象
+            FileInputStream fis = new FileInputStream("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/dbcp.txt"); // 流的构造器可以直接写路径，会自动new一个File对象
             isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
 
             char[] cbuf = new char[10];
@@ -59,8 +59,8 @@ public class TransformStreamTest {
         InputStreamReader isr = null;
         OutputStreamWriter osw = null;
         try {
-            File srcFile = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\dbcp.txt");
-            File destFile = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\dbcp_gbk.txt");
+            File srcFile = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/dbcp.txt");
+            File destFile = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/dbcp_gbk.txt");
 
             FileInputStream fis = new FileInputStream(srcFile);
             FileOutputStream fos = new FileOutputStream(destFile);

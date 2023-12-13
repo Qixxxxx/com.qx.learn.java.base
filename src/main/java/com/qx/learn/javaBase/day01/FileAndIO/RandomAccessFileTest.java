@@ -34,8 +34,8 @@ public class RandomAccessFileTest {
         RandomAccessFile raf1 = null;
         RandomAccessFile raf2 = null;
         try {
-            File srcFile = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\picture.jpg");
-            File destFile = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\picture1.jpg");
+            File srcFile = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/picture.jpg");
+            File destFile = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/picture1.jpg");
 
             raf1 = new RandomAccessFile(srcFile, "r");
             raf2 = new RandomAccessFile(destFile, "rw");
@@ -74,11 +74,11 @@ public class RandomAccessFileTest {
     public void test2() {
         RandomAccessFile raf1 = null;
         try {
-            raf1 = new RandomAccessFile(new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\hello.txt"), "rw");
+            raf1 = new RandomAccessFile(new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/hello.txt"), "rw");
 
             raf1.seek(3);  // 将指针定位到3的位置
             // 保存指针3后面的所有数据到StringBuilder中
-            StringBuilder str = new StringBuilder((int)new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\hello.txt").length()); // 不能超过文件长度
+            StringBuilder str = new StringBuilder((int)new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/hello.txt").length()); // 不能超过文件长度
             byte[] buffer = new byte[20];
             int len;
             while ((len = raf1.read(buffer)) != -1){

@@ -29,7 +29,7 @@ public class TCPTest3 {
             // 2.输出流
             os = socket.getOutputStream();
             // 3.缓冲流读取文件
-            File file = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\picture.jpg");
+            File file = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/picture.jpg");
             FileInputStream fis = new FileInputStream(file);
             bis = new BufferedInputStream(fis);
             // 4.写入文件
@@ -109,7 +109,7 @@ public class TCPTest3 {
             // 3.创建输入流
             is = socket.getInputStream();
             // 4.缓冲流保存文件
-            File file = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\picture1.jpg");
+            File file = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/picture1.jpg");
             FileOutputStream fos = new FileOutputStream(file);
             bos = new BufferedOutputStream(fos);
             byte[] buffer = new byte[1024];

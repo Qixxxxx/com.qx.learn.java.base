@@ -49,9 +49,9 @@ public class FileTest {
     @Test
     public void test1() {
         // 使用路径构造
-        File file1 = new File("E:\\Java\\Java Learn");
+        File file1 = new File("E:/Java/Java Learn");
         // 使用父路径+子路径构造
-        File file2 = new File("E:\\Java\\Java Learn", "FileAndIO");
+        File file2 = new File("E:/Java/Java Learn", "FileAndIO");
         // 使用File+子路径构造
         File file3 = new File(file2, "hi.txt");
         System.out.println(file1); // out:E:\Java\Java Learn
@@ -62,11 +62,11 @@ public class FileTest {
     @Test
     public void test2() {
         // 真实存在的文件目录
-        File file1 = new File("E:\\Java");
+        File file1 = new File("E:/Java");
         // 不存在的文件目录
-        File file2 = new File("E:\\Qx");
+        File file2 = new File("E:/Qx");
         // 真实存在的文件
-        File file3 = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\hello.txt");
+        File file3 = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/hello.txt");
         // 不存在的文件
         File file4 = new File("hello.txt");
 
@@ -85,7 +85,7 @@ public class FileTest {
     @Test
     public void test3() {
         File file = new File("hello.txt");
-        File file1 = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\hello.txt");
+        File file1 = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/hello.txt");
         System.out.println(file);                     // out: hello.txt
         // 查看文件根目录
         System.out.println(file.getAbsoluteFile());   // out: E:\Java\Java Code\com.qx.learn.java.base\hello.txt
@@ -109,7 +109,7 @@ public class FileTest {
 
     @Test
     public void test4() {
-        File file = new File("E:\\Java");
+        File file = new File("E:/Java");
         // list里面包含该目录下所有的文件目录名称
         String[] list = file.list();
         for (String s : list) {
@@ -126,8 +126,8 @@ public class FileTest {
 
     @Test
     public void test5() {
-        File file1 = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\hello.txt");
-        File file2 = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\hi.txt");
+        File file1 = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/hello.txt");
+        File file2 = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/hi.txt");
 
         System.out.println(file1.renameTo(file2));  // 如果需要rename，则需要file1是存在的，file2是不存在的
 
@@ -145,7 +145,7 @@ public class FileTest {
 
     @Test
     public void test6() throws IOException {
-        File file1 = new File("E:\\Java\\Java Code\\com.qx.learn.java.base\\src\\main\\resources\\hii.txt");
+        File file1 = new File("E:/Java/Java Code/com.qx.learn.java.base/src/main/resources/hii.txt");
         if (!file1.exists()) {
             if (file1.createNewFile()) {
                 System.out.println("文件创建成功！");
