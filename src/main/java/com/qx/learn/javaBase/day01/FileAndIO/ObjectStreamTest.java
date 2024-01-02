@@ -9,7 +9,7 @@ import java.io.*;
  *  对象流：处理流的一种，用于存储和读取基本数据类型或对象的处理流。（主要是对对象进行操作）
  *      序列化：用ObjectOutputStream类读取对象的机制
  *      反序列化：用ObjectInputStream类保存对象的机制
- *      注意：不能序列化static和transient修饰的成员变量
+ *      注意：不能序列化static和transient修饰的变量
  *
  *  java对象要想可序列化，需要对象类实现Serializable接口
  *

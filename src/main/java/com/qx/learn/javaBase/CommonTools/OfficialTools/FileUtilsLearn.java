@@ -73,6 +73,15 @@ public class FileUtilsLearn {
      */
     @Test
     public void deleteTest() throws IOException {
+        File file = FileUtils.getFile("D:/test/test1/123.txt");
+        FileUtils.delete(file);                         // 删除单个文件
+        File fileDirectory = FileUtils.getFile("D:/test/test1");
+        FileUtils.deleteDirectory(fileDirectory);         // 删除整个目录,目录本身也被删除
+        FileUtils.forceDelete(fileDirectory);         // 强制删除，如果是目录则目录本身也被删除
+        FileUtils.deleteQuietly(new File("D://test/test1"));     // 如果是目录则目录本身也被删除；不会抛出异常,安静删除
+        FileUtils.cleanDirectory(new File("D://test/test1"));  // 清除目录中的内容,不会删除该目录, 遍历目录中的文件，如果是目录则递归删除；如果是文件则强制删除，删除失败（文件不存在或无法删除）都会抛出异常
+        FileUtils.directoryContains(fileDirectory, file);  // 确定child元素是否存在于directory目录中，child可以是文件或文件夹
+
 
     }
 }
