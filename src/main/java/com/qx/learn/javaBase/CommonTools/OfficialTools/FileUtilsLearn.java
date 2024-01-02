@@ -4,6 +4,12 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.util.List;
 
 /**
  * 文件IO是我们日常项目中经常使用到的基础API，常见的IO读写操作基础类字节流InputStream与OutputStream、字符流Reader与Writer
@@ -15,8 +21,58 @@ public class FileUtilsLearn {
      * 常用的读取文件api
      */
     @Test
-    public void readTest() {
+    public void readTest() throws IOException {
+        // 指定文件路径
         File file = FileUtils.getFile("D:/test/test1/123.txt");
-        File file1 = FileUtils.getFile(new File("D://test/test1"), "123.txt", "456.txt");
+        // 指定目录下的文件路径
+        File file1 = FileUtils.getFile(new File("D://test/test1"), "123", "456.txt");
+        System.out.println("file的绝对路径为：" + file.getAbsolutePath()); // out:  file的绝对路径为：D:\test\test1\123.txt
+        System.out.println("file1的绝对路径为：" + file1.getAbsolutePath()); // out:  file1的绝对路径为：D:\test\test1\123\456.txt
+
+        // 获取输入输出流
+        FileInputStream fis = FileUtils.openInputStream(file);
+        FileOutputStream fos = FileUtils.openOutputStream(file);
+        fos = FileUtils.openOutputStream(file1, true); // append为true时，不进行覆盖操作，而是添加到末尾
+
+        // 将文件内容转为字节数组
+        byte[] bytes = FileUtils.readFileToByteArray(file);
+
+        // 将文件内容转为字符串(需要指定字符集CharSet)
+        String fileString = FileUtils.readFileToString(file, "UTF-8");
+        FileUtils.readFileToString(file, Charset.defaultCharset());
+
+        // 读取目标文件每一行数据，返回字符串集合
+        List<String> stringList = FileUtils.readLines(file, "UTF-8");
+        FileUtils.readLines(file, Charset.defaultCharset());
+
+    }
+
+    /**
+     * 常用的拷贝文件api
+     */
+    @Test
+    public void copyTest() throws IOException {
+        File srcFile = FileUtils.getFile("D:/test/test1/123.txt");
+        File destFile = FileUtils.getFile("D:/test/test1/4.txt");
+        FileUtils.copyFile(srcFile, destFile);
+        FileUtils.copyFile(srcFile, destFile, true); // preserveFileDate 为true时改变日期，false时不改变日期
+        FileUtils.copyFile(srcFile, Files.newOutputStream(destFile.toPath())); // 拷贝文件到输出流
+        FileUtils.copyInputStreamToFile(FileUtils.openInputStream(srcFile), destFile); // 拷贝输入流的内容到指定文件中
+
+        File srcDirectory = FileUtils.getFile("D:/test/test1");
+        File destDirectory = FileUtils.getFile("D:/test/test2");
+        FileUtils.copyDirectoryToDirectory(srcDirectory, destDirectory);   // 拷贝指定目录下所有文件到另一目录下
+        FileUtils.copyFileToDirectory(srcFile, destDirectory);     // 拷贝文件到指定目录中，该目录下没有则新建 D:/test/test2/123.txt
+        FileUtils.copyFileToDirectory(srcFile, destDirectory, false);
+        FileUtils.copyToDirectory(srcDirectory, destDirectory); // srcDirectory可以为具体文件，也可以为目录，实际上调用copyDirectoryToDirectory和copyFileToDirectory
+
+    }
+
+    /**
+     * 常用的删除文件api
+     */
+    @Test
+    public void deleteTest() throws IOException {
+
     }
 }
