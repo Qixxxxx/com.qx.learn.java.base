@@ -223,9 +223,6 @@ public final class ListUtility {
         if (isNullOrEmpty(list) || isNullOrEmpty(otherList)) {
             throw new IllegalArgumentException("input");
         }
-        int orgSize = list.size();
-        list.retainAll(otherList);
-        return list.size() == orgSize;
+        return !Collections.disjoint(list, otherList);
     }
-
 }
