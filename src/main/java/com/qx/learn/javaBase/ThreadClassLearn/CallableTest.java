@@ -1,4 +1,4 @@
-package com.qx.learn.javaBase.ConcurrencyLearn.ThreadClassLearn;
+package com.qx.learn.javaBase.ThreadClassLearn;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;

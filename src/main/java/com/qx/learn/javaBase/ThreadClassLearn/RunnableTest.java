@@ -1,4 +1,4 @@
-package com.qx.learn.javaBase.ConcurrencyLearn.ThreadClassLearn;
+package com.qx.learn.javaBase.ThreadClassLearn;
 
 /**
  * 通过实现Runnable接口来创建线程

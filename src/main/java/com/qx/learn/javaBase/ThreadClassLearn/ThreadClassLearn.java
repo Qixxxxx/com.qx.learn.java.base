@@ -1,4 +1,4 @@
-package com.qx.learn.javaBase.ConcurrencyLearn.ThreadClassLearn;
+package com.qx.learn.javaBase.ThreadClassLearn;
 
 /**
  *  继承Thread类，重写run方法创建线程。Thread类实现了Runnable接口，Thread类的run方法是实现了Runnable接口中的run方法
