@@ -40,7 +40,7 @@ public class ComparatorMethodLearn {
         list.stream().sorted(Comparator.reverseOrder()).forEach(s -> System.out.print(s.getAge() + " "));
 
         Comparator<Student> comparator2 = Comparator.comparing(Student::getAge)
-                .thenComparing(Student::getName);
+                .thenComparing(Student::getName, Comparator.reverseOrder());
 
 
     }
