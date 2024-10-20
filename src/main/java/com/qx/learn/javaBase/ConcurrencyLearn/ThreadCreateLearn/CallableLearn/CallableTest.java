@@ -1,4 +1,4 @@
-package com.qx.learn.javaBase.ThreadClassLearn;
+package com.qx.learn.javaBase.ConcurrencyLearn.ThreadCreateLearn.CallableLearn;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -18,7 +18,7 @@ import java.util.concurrent.FutureTask;
  *  3.创建实现类的对象
  *  4.创建一个FutureTask对象，实现类的对象作为参数传入FutureTask的构造器中
  *  5.创建线程，并start
- *  (可忽略)6.使用FutureTask类的get()获取call的返回值
+ *  6.使用FutureTask类的get()获取call的返回值
  *
  * @author Qi
  * @version 1.0
@@ -27,7 +27,7 @@ import java.util.concurrent.FutureTask;
 public class CallableTest {
     public static void main(String[] args) {
         NumThread numThread = new NumThread();
-        FutureTask futureTask = new FutureTask(numThread);
+        FutureTask<Object> futureTask = new FutureTask<>(numThread);
         Thread thread = new Thread(futureTask);    // 根据FutureTask对象创建线程
         thread.start();              // 启动线程
 
@@ -39,20 +39,5 @@ public class CallableTest {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-    }
-}
-
-class NumThread implements Callable {
-    // callable中不是run方法，是call方法
-    @Override
-    public Object call() throws Exception {     // 可以抛异常
-        int sum = 0;
-        for (int i = 1; i <=100 ; i++) {
-            if(i % 2 == 0){
-                System.out.println(i);
-                sum += i;
-            }
-        }
-        return sum;   // 自动装箱，不想要返回值则 return null
     }
 }

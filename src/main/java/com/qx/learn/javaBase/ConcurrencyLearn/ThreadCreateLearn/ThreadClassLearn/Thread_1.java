@@ -1,4 +1,4 @@
-package com.qx.learn.javaBase.ThreadClassLearn;
+package com.qx.learn.javaBase.ConcurrencyLearn.ThreadCreateLearn.ThreadClassLearn;
 
 
 public class Thread_1 extends Thread {
