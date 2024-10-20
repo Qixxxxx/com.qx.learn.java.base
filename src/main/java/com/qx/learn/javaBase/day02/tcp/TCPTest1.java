@@ -78,6 +78,7 @@ public class TCPTest1{
                 baos.write(buffer, 0, len);
             }
             System.out.println(baos.toString());
+
             System.out.println("收到了来自于" + socket.getInetAddress().getHostAddress() + "的数据");
         } catch (IOException e) {
             e.printStackTrace();
