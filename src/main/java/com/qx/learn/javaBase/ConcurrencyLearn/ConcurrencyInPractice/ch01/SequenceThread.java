@@ -13,12 +13,12 @@ public class SequenceThread implements Runnable{
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            safeSequence.next();
             int i = safeSequence.getValue();
             if (i >= 10000) {
                 System.out.println(Thread.currentThread().getName() + " getValue(): " + i);
                 break;
             }
+            safeSequence.next();
             System.out.println(Thread.currentThread().getName() + " getValue(): " + i);
         }
     }

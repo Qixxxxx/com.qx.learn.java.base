@@ -14,12 +14,12 @@ public class UnsafeSequenceThread implements Runnable{
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            unsafeSequence.next();
             int i = unsafeSequence.getValue();
             if (i >= 10000) {
                 System.out.println(Thread.currentThread().getName() + " getValue(): " + i);
                 break;
             }
+            unsafeSequence.next();
             System.out.println(Thread.currentThread().getName() + " getValue(): " + i);
         }
     }
