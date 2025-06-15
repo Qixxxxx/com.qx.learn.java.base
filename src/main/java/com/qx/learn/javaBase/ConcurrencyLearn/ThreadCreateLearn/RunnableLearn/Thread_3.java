@@ -1,7 +1,6 @@
 package com.qx.learn.javaBase.ConcurrencyLearn.ThreadCreateLearn.RunnableLearn;
 
 /**
- *
  * 直接继承runnable接口，同样需要重写run方法
  */
 public class Thread_3 implements Runnable {
