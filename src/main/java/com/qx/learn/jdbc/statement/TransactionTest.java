@@ -35,7 +35,7 @@ public class TransactionTest {
         try {
             conn = JDBCUtils.getConnection();
             System.out.println(conn.getAutoCommit());//true
-            //1.取消数据的自动提交
+            //1.取消数据的自动提交（开启事务）
             conn.setAutoCommit(false);
 
             String sql1 = "update user_table set balance = balance - 100 where user = ?";
@@ -61,7 +61,6 @@ public class TransactionTest {
                 e1.printStackTrace();
             }
         } finally {
-
             JDBCUtils.closeResource(conn, null);
         }
 
