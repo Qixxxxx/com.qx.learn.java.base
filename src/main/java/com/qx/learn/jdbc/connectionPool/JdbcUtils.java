@@ -38,7 +38,7 @@ public class JdbcUtils {
     /**
      * 对外提供释放资源方法
      */
-    public static void freeConnection(Statement statement, ResultSet resultSet) throws SQLException {
+    public static void freeConnection() throws SQLException {
         Connection connection = threadLocal.get();
 
         if (connection != null) {
@@ -47,20 +47,6 @@ public class JdbcUtils {
                 connection.setAutoCommit(true);    // 事务状态回归 false
                 connection.close();    // 回收到连接池
             } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (statement != null) {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if (resultSet != null) {
-            try {
-                resultSet.close();
-            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
